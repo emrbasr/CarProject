@@ -16,7 +16,7 @@ namespace Business.DependencyResolvers.Autofac
         protected override void Load(ContainerBuilder builder)
         {
            builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();
-           builder.RegisterType<EfCarDAL>().As<ICarDAL>().SingleInstance();
+           builder.RegisterType<EfCarDAL>().As<ICarDAL >().SingleInstance();
         }
     }
 }
