@@ -34,32 +34,34 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll().ToList(),Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
+          
         }
 
         public IDataResult<List<Car>> GetAllByBrandId(int brandId)
         {
-            throw new NotImplementedException();
+            var result= new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId));
+            return result;
         }
 
         public IDataResult<List<Car>> GetByDailyPrice(double price)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.DailyPrice == price),Messages.CarListed);
         }
 
         public IDataResult<List<Car>> GetByDailyPrice(double min, double max)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Car>> (_carDal.GetAll(p=>p.DailyPrice>=min && p.DailyPrice<=max));
         }
 
         public IDataResult<Car> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Car>(_carDal.Get(p=>p.Id==id));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
     }
 }
