@@ -1,11 +1,12 @@
 ﻿using Business.Abstract;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class CarController : ControllerBase
     {
         private readonly ICarService carService;
@@ -18,7 +19,7 @@ namespace WebApi.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result= carService.GetAll();
+            var result = carService.GetAll();
             if (result.Success)
             {
                 return Ok(result);

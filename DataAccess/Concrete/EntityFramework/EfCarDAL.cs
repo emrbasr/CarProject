@@ -1,15 +1,7 @@
 ﻿using Core.Concrete;
 using DataAccess.Abstract;
-using DataAccess.Context;
 using Entities.Concrete;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -26,13 +18,15 @@ namespace DataAccess.Concrete.EntityFramework
                              join b in context.Brands
                              on c.Id equals b.BrandId
 
-                             select new CarDetailDto { CarName=p.CarName,
-                                 BrandName=b.BrandName,
-                                 ColorName=c.Name,
-                                 DailyPrice=p.DailyPrice
+                             select new CarDetailDto
+                             {
+                                 CarName = p.CarName,
+                                 BrandName = b.BrandName,
+                                 ColorName = c.Name,
+                                 DailyPrice = p.DailyPrice
                              };
 
-               return result.ToList();
+                return result.ToList();
 
             }
         }
