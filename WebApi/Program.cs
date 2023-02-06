@@ -20,10 +20,11 @@ namespace WebApi
             builder.Services.AddControllers();
             builder.Services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("cardb")));
 
-            builder.Services.AddCors(c =>
+            builder.Services.AddCors(options =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                options.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
             });
+
 
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureContainer<ContainerBuilder>(builder =>
@@ -67,7 +68,7 @@ namespace WebApi
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 

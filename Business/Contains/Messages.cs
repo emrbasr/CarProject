@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Business.Contains
+﻿namespace Business.Contains
 {
     public static class Messages
     {
@@ -12,5 +6,9 @@ namespace Business.Contains
         public static string CarNameInvalid = "Verdiğiniz isim geçersiz";
 
         public static string CarListed = "Araçlar listelendi";
+
+        public static string BrandAdded = "Marka Eklendi";
+
+        public static string BrandListed = "Markalar Listelendi";
     }
 }
